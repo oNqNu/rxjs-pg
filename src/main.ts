@@ -1,4 +1,8 @@
-import { of } from 'rxjs';
+import { interval } from 'rxjs';
 
-const obs = of(1, 2, 3);
-obs.subscribe(console.log); // 1,2,3 (3 times)
+const obs = interval(1000);
+const subscription = obs.subscribe(console.log);
+
+setTimeout(() => {
+  subscription.unsubscribe();
+}, 5000);
