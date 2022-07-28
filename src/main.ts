@@ -1,8 +1,10 @@
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-const obs: Observable<number> = of(1, 2, 3).pipe(
-  map((inputNum) => inputNum * inputNum)
-);
+const obs: Observable<number> = new Observable((sub) => {
+  sub.next(1);
+  sub.next(2);
+  sub.next(3);
+  sub.complete();
+});
 
 obs.subscribe((v: number) => console.log(v));
