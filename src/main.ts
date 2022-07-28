@@ -1,8 +1,8 @@
-import { interval } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-const obs = interval(1000);
-const subscription = obs.subscribe(console.log);
+const obs: Observable<number> = of(1, 2, 3).pipe(
+  map((inputNum) => inputNum * inputNum)
+);
 
-setTimeout(() => {
-  subscription.unsubscribe();
-}, 5000);
+obs.subscribe((v: number) => console.log(v));
