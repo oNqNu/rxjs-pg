@@ -9,4 +9,14 @@ const obs: Observable<number> = new Observable((sub) => {
   sub.complete();
 });
 
-obs.subscribe((v: number | string) => console.log(v));
+obs.subscribe({
+  next(r) {
+    console.log(`value:${r}`);
+  },
+  error(e) {
+    console.log(e);
+  },
+  complete() {
+    console.log('complete');
+  },
+});
