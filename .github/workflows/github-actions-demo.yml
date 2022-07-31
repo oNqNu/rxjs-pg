@@ -1,5 +1,7 @@
 name: GitHub Actions Demo
-on: [push]
+on: pull_request:
+    branches:
+      - "main"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -14,4 +16,6 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Display PR URL
+        run echo ${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.number }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
