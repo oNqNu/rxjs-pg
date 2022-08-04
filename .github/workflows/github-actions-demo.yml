@@ -22,4 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display PR URL
-        run: echo '### Link:[PR \#${{ github.event.pull_request.number }}](${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }})' >> $GITHUB_STEP_SUMMARY
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_URL: ${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}
+        run: |
+          echo "### [PR \#${PR_NUMBER}](${PR_URL})" >> "${GITHUB_STEP_SUMMARY}"
